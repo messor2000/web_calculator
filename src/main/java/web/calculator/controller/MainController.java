@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import web.calculator.service.CalculatorService;
-import web.calculator.service.GetFunctionFromString;
 import web.calculator.service.WebCalculatorService;
 
 @Slf4j
@@ -15,11 +14,9 @@ import web.calculator.service.WebCalculatorService;
 public class MainController {
 
     private final CalculatorService calculatorService;
-    private final GetFunctionFromString getFunctionFromString;
 
-    public MainController(WebCalculatorService calculatorService, GetFunctionFromString getFunctionFromString) {
+    public MainController(WebCalculatorService calculatorService) {
         this.calculatorService = calculatorService;
-        this.getFunctionFromString = getFunctionFromString;
     }
 
     @GetMapping(value = "/")
@@ -32,13 +29,10 @@ public class MainController {
                                     @RequestParam("numTo") double numTo, @RequestParam("precision") int precision,
                                     RedirectAttributes redirectAttributes) {
 
-        getFunctionFromString.setStr(function);
-
-
         double rectangleResult = calculatorService.integrateRectangleMethod(numFrom, numTo, precision, function);
-        double trapezoidalResult = calculatorService.integrateTrapezoidalMethod(numFrom, numTo, precision, x -> Double.parseDouble(function));
-        double simpsonRuleResult = calculatorService.integrateTrapezoidalMethod(numFrom, numTo, precision, x -> Double.parseDouble(function));
-        double parabolasResult = calculatorService.integrateParabolasMethod(numFrom, numTo, precision, x -> Double.parseDouble(function));
+        double trapezoidalResult = calculatorService.integrateTrapezoidalMethod(numFrom, numTo, precision, function);
+        double simpsonRuleResult = calculatorService.integrateTrapezoidalMethod(numFrom, numTo, precision, function);
+        double parabolasResult = calculatorService.integrateParabolasMethod(numFrom, numTo, precision, function);
 
         log.info(String.valueOf(rectangleResult));
         log.info(String.valueOf(trapezoidalResult));
@@ -53,6 +47,4 @@ public class MainController {
 
         return "redirect:/";
     }
-
-
 }
