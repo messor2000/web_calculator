@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="">
+<head>
+    <meta http-equiv='Content-Type' content='text/html; charset=UTF-8'/>
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Integral Calculator</title>
+    <link href="/css/main.css" th:href="@{/css/main.css}" rel="stylesheet"/>
+</head>
+
+<header>Integral Calculator</header>
+<body>
+<main>
+    <div class="container">
+        <form action="/integrate" method="post">
+            <section class="container">
+                <label><span class="label-text">Enter integrand f(x): </span><input name="function" class="input-cb" type="text"></label>
+                <fieldset>
+                    <legend>Enter range:</legend>
+                    <label><span class="label-text">From: </span><input name="numFrom" class="input-range-from" type="number"></label>
+                    <label><span class="label-text">To: </span><input name="numTo" class="input-range-to" type="number"></label>
+                    <label><span class="label-text">Precision: </span><input name="precision" class="input-range-to" type="number"></label>
+
+                    <!--                </fieldset>-->
+<!--                <label><span class="label-text">Enter step: </span><input name="step" class="input-step" type="number" value="0.01"-->
+<!--                                                                          step="0.1" min="0"></label>-->
+                <p class="error-message is-hidden"></p>
+                <button class="btn" type="submit">
+                    Calculate
+                </button>
+
+                <br>
+                <div class="results">
+                    <p class="result">Function:</p>
+                    <p class="result-rect" th:text="${function}"></p>
+                    <p>Rectangle result:</p>
+                    <p class="result-rect" th:text="${rectangleResult}"></p>
+                    <p>Trapezoidal result:</p>
+                    <p class="result-trap" th:text="${trapezoidalResult}"></p>
+                    <p>Simpson Rule result:</p>
+                    <p class="result-trap" th:text="${simpsonRuleResult}"></p>
+                    <p>Parabolas result:</p>
+                    <p class="result-trap" th:text="${parabolasResult}"></p>
+                </div>
+
+            </section>
+        </form>
+            <section class="chart-container">
+                <p class="chart-info is-hidden">The chart is only available for real number results</p>
+                <canvas id="myChart"></canvas>
+            </section>
+    </div>
+</main>
+</body>
