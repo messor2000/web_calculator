@@ -71,5 +71,4 @@ public class WebCalculatorService implements CalculatorService {
 
         return sum * step;
     }
-
 }

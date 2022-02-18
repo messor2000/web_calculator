@@ -7,14 +7,25 @@
     <link href="/css/main.css" th:href="@{/css/main.css}" rel="stylesheet"/>
 </head>
 
-<header>Integral Calculator</header>
+<header th:text="#{title}"> Integral Calculator</header>
 <body>
 <main>
     <div class="container">
 
+        <div class="localization" th:if="${#locale.toString() == 'uk_UK'}">
+            <a th:href="@{${#httpServletRequest.requestURI}(lang='en_US')}">
+                <i>EN</i>
+            </a>
+        </div>
+        <div class="localization" th:if="${#locale.toString() == 'en_US'}">
+            <a th:href="@{${#httpServletRequest.requestURI}(lang='uk_UK')}">
+                <i>UK</i>
+            </a>
+        </div>
+
+        <span th:text="#{example}">Example of formulas that can be calculated: </span>
         <label>
             <span class="label-text">
-                <span>Example of formulas that can be calculated: </span>
                 <img src="/img/Formula1.png" alt="Formula1">
                 <img src="/img/Formula2.png" alt="Formula2">
                 <img src="/img/Formula3.png" alt="Formula3">
@@ -24,29 +35,29 @@
 
         <form action="/integrate" method="post">
             <section class="container">
-                <label><span class="label-text">Enter integrand f(x): </span><input name="function" class="input-cb"
+                <label><span class="label-text" th:text="#{integral}">Enter integrand f(x): </span><input name="function" class="input-cb"
                                                                                     type="text"></label>
                 <fieldset>
                     <legend>Enter range:</legend>
-                    <label><span class="label-text">From: </span><input name="numFrom" class="input-range-from"
+                    <label><span class="label-text" th:text="#{from}">From: </span><input name="numFrom" class="input-range-from"
                                                                         type="number"></label>
-                    <label><span class="label-text">To: </span><input name="numTo" class="input-range-to" type="number"></label>
+                    <label><span class="label-text" th:text="#{to}">To: </span><input name="numTo" class="input-range-to" type="number"></label>
                     <p class="error-message is-hidden"></p>
-                    <button class="btn" type="submit">
+                    <button class="btn" type="submit" th:text="#{calculate}">
                         Calculate
                     </button>
 
                     <br>
                     <div class="results" >
-                        <p class="result">Function:</p>
+                        <p class="result" th:text="#{function}">Function:</p>
                         <p class="result-rect" th:text="${function}"></p>
-                        <p>Rectangle result:</p>
+                        <p th:text="#{rectangle.result}">Rectangle result:</p>
                         <p class="result-rect" th:text="${rectangleResult}"></p>
-                        <p>Trapezoidal result:</p>
+                        <p th:text="#{trapezoidal.result}">Trapezoidal result:</p>
                         <p class="result-trap" th:text="${trapezoidalResult}"></p>
-                        <p>Simpson Rule result:</p>
+                        <p th:text="#{simpson.rule.result}">Simpson Rule result:</p>
                         <p class="result-trap" th:text="${simpsonRuleResult}"></p>
-                        <p>Parabolas result:</p>
+                        <p th:text="#{parabolas.result}">Parabolas result:</p>
                         <p class="result-trap" th:text="${parabolasResult}"></p>
                     </div>
                 </fieldset>
