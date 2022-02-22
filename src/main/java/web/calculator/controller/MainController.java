@@ -32,17 +32,20 @@ public class MainController {
         double trapezoidalResult = calculatorService.integrateTrapezoidalMethod(numFrom, numTo, function);
         double simpsonRuleResult = calculatorService.integrateTrapezoidalMethod(numFrom, numTo, function);
         double parabolasResult = calculatorService.integrateParabolasMethod(numFrom, numTo, function);
+        double splineResult = calculatorService.integrateSplineMethod(numFrom, numTo, function);
 
         log.info(String.valueOf(rectangleResult));
         log.info(String.valueOf(trapezoidalResult));
         log.info(String.valueOf(simpsonRuleResult));
         log.info(String.valueOf(parabolasResult));
+        log.info(String.valueOf(splineResult));
 
         redirectAttributes.addFlashAttribute("function", function);
         redirectAttributes.addFlashAttribute("rectangleResult", rectangleResult);
         redirectAttributes.addFlashAttribute("trapezoidalResult", trapezoidalResult);
         redirectAttributes.addFlashAttribute("simpsonRuleResult", simpsonRuleResult);
         redirectAttributes.addFlashAttribute("parabolasResult", parabolasResult);
+        redirectAttributes.addFlashAttribute("splineResult", splineResult);
 
         return "redirect:/";
     }

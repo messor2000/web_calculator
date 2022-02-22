@@ -8,4 +8,6 @@ public interface CalculatorService {
     double integrateSimpsonMethod(double a, double b, String function);
 
     double integrateParabolasMethod(double a, double b, String function);
+
+    double integrateSplineMethod(double a, double b, String function);
 }
