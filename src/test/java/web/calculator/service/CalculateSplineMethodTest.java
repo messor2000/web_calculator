@@ -15,26 +15,26 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @AutoConfigureMockMvc
-public class IntegrateRectangleMethodTest {
+public class CalculateSplineMethodTest {
 
     @Autowired
     private WebCalculatorService calculatorService;
 
     @Test
-    @DisplayName("Test that rectangle method should get correct result")
+    @DisplayName("Test that spline method should get correct result")
     public void shouldReturnCorrectAnswerWithCorrectFunction() {
-        double methodResult = calculatorService.integrateRectangleMethod(0, 2, "x^2");
+        double methodResult = calculatorService.integrateSplineMethod(0, 2, "x^2");
 
         String result = String.format("%.2f", methodResult);
-        String expectedResult = "2,66";
+        String expectedResult = "2,67";
 
         assertEquals(expectedResult, result);
     }
 
     @Test
-    @DisplayName("Test that rectangle method should get correct result")
+    @DisplayName("Test that spline method should get correct result")
     public void shouldReturnCorrectAnswerWithTrigonometry() {
-        double methodResult = calculatorService.integrateRectangleMethod(0, 2, "sin(x+2)");
+        double methodResult = calculatorService.integrateSplineMethod(0, 2, "sin(x+2)");
 
         String result = String.format("%.2f", methodResult);
         String expectedResult = "0,24";
@@ -43,9 +43,9 @@ public class IntegrateRectangleMethodTest {
     }
 
     @Test
-    @DisplayName("Test that rectangle method should get correct result")
+    @DisplayName("Test that spline method should get correct result")
     public void shouldReturnNaNWithIncorrectInput() {
-        double methodResult = calculatorService.integrateRectangleMethod(0, 2, "x2");
+        double methodResult = calculatorService.integrateSplineMethod(0, 2, "x2");
 
         String result = String.format("%.2f", methodResult);
         String expectedResult = "NaN";

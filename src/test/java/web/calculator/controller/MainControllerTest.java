@@ -54,6 +54,7 @@ public class MainControllerTest {
         double trapezoidalResult = calculatorService.integrateTrapezoidalMethod(0 ,2, "x^2");
         double simpsonRuleResult = calculatorService.integrateSimpsonMethod(0 ,2, "x^2");
         double parabolasResult = calculatorService.integrateParabolasMethod(0 ,2, "x^2");
+        double splineResult = calculatorService.integrateSplineMethod(0 ,2, "x^2");
 
         this.mockMvc.perform(MockMvcRequestBuilders.post("/integrate")
                 .param("function", "x^2")
@@ -63,6 +64,7 @@ public class MainControllerTest {
                 .andExpect(MockMvcResultMatchers.flash().attribute("rectangleResult", rectangleResult))
                 .andExpect(MockMvcResultMatchers.flash().attribute("trapezoidalResult", trapezoidalResult))
                 .andExpect(MockMvcResultMatchers.flash().attribute("parabolasResult", parabolasResult))
+                .andExpect(MockMvcResultMatchers.flash().attribute("splineResult", splineResult))
                 .andExpect(redirectedUrl("/"));
 
         double epsilon = 0.01d;
@@ -76,6 +78,7 @@ public class MainControllerTest {
         double trapezoidalResult = calculatorService.integrateTrapezoidalMethod(0 ,2, "cos(x^2)");
         double simpsonRuleResult = calculatorService.integrateSimpsonMethod(0 ,2, "cos(x^2)");
         double parabolasResult = calculatorService.integrateParabolasMethod(0 ,2, "cos(x^2)");
+        double splineResult = calculatorService.integrateSplineMethod(0 ,2, "cos(x^2)");
 
         this.mockMvc.perform(MockMvcRequestBuilders.post("/integrate")
                 .param("function", "cos(x^2)")
@@ -85,6 +88,7 @@ public class MainControllerTest {
                 .andExpect(MockMvcResultMatchers.flash().attribute("rectangleResult", rectangleResult))
                 .andExpect(MockMvcResultMatchers.flash().attribute("trapezoidalResult", trapezoidalResult))
                 .andExpect(MockMvcResultMatchers.flash().attribute("parabolasResult", parabolasResult))
+                .andExpect(MockMvcResultMatchers.flash().attribute("splineResult", splineResult))
                 .andExpect(redirectedUrl("/"));
 
         double epsilon = 0.01d;
@@ -98,6 +102,7 @@ public class MainControllerTest {
         double trapezoidalResult = calculatorService.integrateTrapezoidalMethod(0 ,2, "x2");
         double simpsonRuleResult = calculatorService.integrateSimpsonMethod(0 ,2, "x2");
         double parabolasResult = calculatorService.integrateParabolasMethod(0 ,2, "x2");
+        double splineResult = calculatorService.integrateSplineMethod(0 ,2, "x2");
 
         this.mockMvc.perform(MockMvcRequestBuilders.post("/integrate")
                 .param("function", "x2")
@@ -108,6 +113,7 @@ public class MainControllerTest {
                 .andExpect(MockMvcResultMatchers.flash().attribute("trapezoidalResult", trapezoidalResult))
                 .andExpect(MockMvcResultMatchers.flash().attribute("simpsonRuleResult", simpsonRuleResult))
                 .andExpect(MockMvcResultMatchers.flash().attribute("parabolasResult", parabolasResult))
+                .andExpect(MockMvcResultMatchers.flash().attribute("splineResult", splineResult))
                 .andExpect(redirectedUrl("/"));
     }
 }
