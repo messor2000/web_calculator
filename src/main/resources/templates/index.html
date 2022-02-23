@@ -13,6 +13,31 @@
     <div class="container">
         <div class="main-wrapper">
             <div class="item">
+<!--                <div class="localization" th:if="${#locale.toString() == 'uk_UK'}">-->
+<!--                    <a th:href="@{${#httpServletRequest.requestURI}(lang='en_US')}">-->
+<!--                        <i>EN</i>-->
+<!--                    </a>-->
+<!--                </div>-->
+<!--                <div class="localization" th:if="${#locale.toString() == 'en_US'}">-->
+<!--                    <a th:href="@{${#httpServletRequest.requestURI}(lang='uk_UK')}">-->
+<!--                        <i>UA</i>-->
+<!--                    </a>-->
+<!--                </div>-->
+
+<!--                <div>-->
+<!--                    <h4 th:text="#{example}">Example of formulas that can be calculated: </h4>-->
+<!--                    <label>-->
+<!--                        <span class="label-text">-->
+<!--                            <img src="/img/Formula1.png" alt="Formula1">-->
+<!--                            <img src="/img/Formula2.png" alt="Formula2">-->
+<!--                            <img src="/img/Formula3.png" alt="Formula3">-->
+<!--                            <img src="/img/Formula4.png" alt="Formula4">-->
+<!--                        </span>-->
+<!--                    </label>-->
+<!--                </div>-->
+            </div>
+
+            <div class="item">
                 <div class="localization" th:if="${#locale.toString() == 'uk_UK'}">
                     <a th:href="@{${#httpServletRequest.requestURI}(lang='en_US')}">
                         <i>EN</i>
@@ -23,21 +48,6 @@
                         <i>UA</i>
                     </a>
                 </div>
-
-                <div>
-                    <h4 th:text="#{example}">Example of formulas that can be calculated: </h4>
-                    <label>
-                        <span class="label-text">
-                            <img src="/img/Formula1.png" alt="Formula1">
-                            <img src="/img/Formula2.png" alt="Formula2">
-                            <img src="/img/Formula3.png" alt="Formula3">
-                            <img src="/img/Formula4.png" alt="Formula4">
-                        </span>
-                    </label>
-                </div>
-            </div>
-
-            <div class="item">
                 <form action="/integrate" method="post">
                     <section class="container">
                         <table class="col-xs-12">
@@ -85,13 +95,11 @@
                         </div>
                     </section>
                 </form>
-                <section class="chart-container">
-                    <p class="chart-info is-hidden">The chart is only available for real number results</p>
-                    <canvas id="myChart"></canvas>
-                </section>
-            </div>
+<!--                <section class="chart-container">-->
+<!--                    <p class="chart-info is-hidden">The chart is only available for real number results</p>-->
+<!--                    <canvas id="myChart"></canvas>-->
+<!--                </section>-->
 
-            <div class="item">
                 <i th:text="#{note}">Note : the number "pi" (π) is written as 3.14</i><br>
                 <i th:text="#{example.expressions}">Examples of the correct recording of some expressions</i><br>
                 <table class="table table-bordered">
@@ -110,6 +118,9 @@
                     </tr>
                     </tbody>
                 </table>
+            </div>
+
+            <div class="item">
             </div>
         </div>
     </div>
