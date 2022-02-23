@@ -11,65 +11,81 @@
 <body>
 <main>
     <div class="container">
+        <div class="main-wrapper">
+            <div class="item">
+                <div class="localization" th:if="${#locale.toString() == 'uk_UK'}">
+                    <a th:href="@{${#httpServletRequest.requestURI}(lang='en_US')}">
+                        <i>EN</i>
+                    </a>
+                </div>
+                <div class="localization" th:if="${#locale.toString() == 'en_US'}">
+                    <a th:href="@{${#httpServletRequest.requestURI}(lang='uk_UK')}">
+                        <i>UA</i>
+                    </a>
+                </div>
 
-        <div class="localization" th:if="${#locale.toString() == 'uk_UK'}">
-            <a th:href="@{${#httpServletRequest.requestURI}(lang='en_US')}">
-                <i>EN</i>
-            </a>
+                <div>
+                    <h4 th:text="#{example}">Example of formulas that can be calculated: </h4>
+                    <label>
+                        <span class="label-text">
+                            <img src="/img/Formula1.png" alt="Formula1">
+                            <img src="/img/Formula2.png" alt="Formula2">
+                            <img src="/img/Formula3.png" alt="Formula3">
+                            <img src="/img/Formula4.png" alt="Formula4">
+                        </span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="item">
+                <form action="/integrate" method="post">
+                    <section class="container">
+                        <label><span class="label-text" th:text="#{integral}">Enter integrand f(x): </span><input
+                                name="function" class="input-cb"
+                                type="text"></label>
+                        <fieldset>
+                            <legend>Enter range:</legend>
+                            <label><span class="label-text" th:text="#{from}">From: </span><input name="numFrom"
+                                                                                                  class="input-range-from"
+                                                                                                  type="number"></label>
+                            <label><span class="label-text" th:text="#{to}">To: </span><input name="numTo"
+                                                                                              class="input-range-to"
+                                                                                              type="number"></label>
+                            <p class="error-message is-hidden"></p>
+                            <button class="btn" type="submit" th:text="#{calculate}">
+                                Calculate
+                            </button>
+
+                            <br>
+                            <div class="results">
+                                <p class="result" th:text="#{function}">Function:</p>
+                                <p class="result-rect" th:text="${function}"></p>
+                                <p th:text="#{rectangle.result}">Rectangle result:</p>
+                                <p class="result-rect" th:text="${rectangleResult}"></p>
+                                <p th:text="#{trapezoidal.result}">Trapezoidal result:</p>
+                                <p class="result-trap" th:text="${trapezoidalResult}"></p>
+                                <p th:text="#{simpson.rule.result}">Simpson Rule result:</p>
+                                <p class="result-trap" th:text="${simpsonRuleResult}"></p>
+                                <p th:text="#{parabolas.result}">Parabolas result:</p>
+                                <p class="result-trap" th:text="${parabolasResult}"></p>
+                                <p th:text="#{parabolas.spline}">Spline result:</p>
+                                <p class="result-trap" th:text="${splineResult}"></p>
+                            </div>
+                        </fieldset>
+
+                    </section>
+                </form>
+                <section class="chart-container">
+                    <p class="chart-info is-hidden">The chart is only available for real number results</p>
+                    <canvas id="myChart"></canvas>
+                </section>
+            </div>
+
+            <div class="item">
+            </div>
         </div>
-        <div class="localization" th:if="${#locale.toString() == 'en_US'}">
-            <a th:href="@{${#httpServletRequest.requestURI}(lang='uk_UK')}">
-                <i>UA</i>
-            </a>
-        </div>
 
-        <span th:text="#{example}">Example of formulas that can be calculated: </span>
-        <label>
-            <span class="label-text">
-                <img src="/img/Formula1.png" alt="Formula1">
-                <img src="/img/Formula2.png" alt="Formula2">
-                <img src="/img/Formula3.png" alt="Formula3">
-                <img src="/img/Formula4.png" alt="Formula4">
-            </span>
-        </label>
 
-        <form action="/integrate" method="post">
-            <section class="container">
-                <label><span class="label-text" th:text="#{integral}">Enter integrand f(x): </span><input name="function" class="input-cb"
-                                                                                    type="text"></label>
-                <fieldset>
-                    <legend>Enter range:</legend>
-                    <label><span class="label-text" th:text="#{from}">From: </span><input name="numFrom" class="input-range-from"
-                                                                        type="number"></label>
-                    <label><span class="label-text" th:text="#{to}">To: </span><input name="numTo" class="input-range-to" type="number"></label>
-                    <p class="error-message is-hidden"></p>
-                    <button class="btn" type="submit" th:text="#{calculate}">
-                        Calculate
-                    </button>
-
-                    <br>
-                    <div class="results" >
-                        <p class="result" th:text="#{function}">Function:</p>
-                        <p class="result-rect" th:text="${function}"></p>
-                        <p th:text="#{rectangle.result}">Rectangle result:</p>
-                        <p class="result-rect" th:text="${rectangleResult}"></p>
-                        <p th:text="#{trapezoidal.result}">Trapezoidal result:</p>
-                        <p class="result-trap" th:text="${trapezoidalResult}"></p>
-                        <p th:text="#{simpson.rule.result}">Simpson Rule result:</p>
-                        <p class="result-trap" th:text="${simpsonRuleResult}"></p>
-                        <p th:text="#{parabolas.result}">Parabolas result:</p>
-                        <p class="result-trap" th:text="${parabolasResult}"></p>
-                        <p th:text="#{parabolas.spline}">Spline result:</p>
-                        <p class="result-trap" th:text="${splineResult}"></p>
-                    </div>
-                </fieldset>
-
-            </section>
-        </form>
-        <section class="chart-container">
-            <p class="chart-info is-hidden">The chart is only available for real number results</p>
-            <canvas id="myChart"></canvas>
-        </section>
     </div>
 </main>
 </body>
