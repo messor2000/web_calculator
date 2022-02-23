@@ -47,6 +47,8 @@ public class MainController {
         redirectAttributes.addFlashAttribute("parabolasResult", parabolasResult);
         redirectAttributes.addFlashAttribute("splineResult", splineResult);
 
+        redirectAttributes.addFlashAttribute("function", function);
+
         return "redirect:/";
     }
 }

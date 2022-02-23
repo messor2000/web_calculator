@@ -40,39 +40,49 @@
             <div class="item">
                 <form action="/integrate" method="post">
                     <section class="container">
-                        <label><span class="label-text" th:text="#{integral}">Enter integrand f(x): </span><input
-                                name="function" class="input-cb"
-                                type="text"></label>
-                        <fieldset>
-                            <legend>Enter range:</legend>
-                            <label><span class="label-text" th:text="#{from}">From: </span><input name="numFrom"
-                                                                                                  class="input-range-from"
-                                                                                                  type="number"></label>
-                            <label><span class="label-text" th:text="#{to}">To: </span><input name="numTo"
-                                                                                              class="input-range-to"
-                                                                                              type="number"></label>
-                            <p class="error-message is-hidden"></p>
-                            <button class="btn" type="submit" th:text="#{calculate}">
-                                Calculate
-                            </button>
+                        <table class="col-xs-12">
+                            <tbody>
+                            <tr>
+                                <td style="text-align:center">
+                                    <br><label for="b"></label><input class="board-input-size" type="number" id="b"
+                                                                      placeholder="0" value="0"
+                                                                      name="numFrom">
+                                    <br><span style="text-align:center;font-size:3em">∫</span>
+                                    <br><label for="a"></label><input class="board-input-size" type="number" id="a"
+                                                                      placeholder="2" value="2"
+                                                                      name="numTo">
+                                </td>
+                                <td>
+                                    <div class="input-group"><label for="fx"></label><input type="text" id="fx"
+                                                                                            required=""
+                                                                                            placeholder="2*(cos(x))"
+                                                                                            value="2*(cos(x))"
+                                                                                            class="form-control keyboardInput function-input-size"
+                                                                                            name="function"><span
+                                            class="input-group-addon">dx</span></div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <button class="btn" type="submit" th:text="#{calculate}">
+                            Calculate
+                        </button>
 
-                            <br>
-                            <div class="results">
-                                <p class="result" th:text="#{function}">Function:</p>
-                                <p class="result-rect" th:text="${function}"></p>
-                                <p th:text="#{rectangle.result}">Rectangle result:</p>
-                                <p class="result-rect" th:text="${rectangleResult}"></p>
-                                <p th:text="#{trapezoidal.result}">Trapezoidal result:</p>
-                                <p class="result-trap" th:text="${trapezoidalResult}"></p>
-                                <p th:text="#{simpson.rule.result}">Simpson Rule result:</p>
-                                <p class="result-trap" th:text="${simpsonRuleResult}"></p>
-                                <p th:text="#{parabolas.result}">Parabolas result:</p>
-                                <p class="result-trap" th:text="${parabolasResult}"></p>
-                                <p th:text="#{parabolas.spline}">Spline result:</p>
-                                <p class="result-trap" th:text="${splineResult}"></p>
-                            </div>
-                        </fieldset>
-
+                        <br>
+                        <div class="results">
+                            <p class="result" th:text="#{function}">Function:</p>
+                            <p class="result-rect" th:text="${function}"></p>
+                            <p th:text="#{rectangle.result}">Rectangle result:</p>
+                            <p class="result-rect" th:text="${rectangleResult}"></p>
+                            <p th:text="#{trapezoidal.result}">Trapezoidal result:</p>
+                            <p class="result-trap" th:text="${trapezoidalResult}"></p>
+                            <p th:text="#{simpson.rule.result}">Simpson Rule result:</p>
+                            <p class="result-trap" th:text="${simpsonRuleResult}"></p>
+                            <p th:text="#{parabolas.result}">Parabolas result:</p>
+                            <p class="result-trap" th:text="${parabolasResult}"></p>
+                            <p th:text="#{parabolas.spline}">Spline result:</p>
+                            <p class="result-trap" th:text="${splineResult}"></p>
+                        </div>
                     </section>
                 </form>
                 <section class="chart-container">
@@ -82,10 +92,26 @@
             </div>
 
             <div class="item">
+                <i th:text="#{note}">Note : the number "pi" (π) is written as 3.14</i><br>
+                <i th:text="#{example.expressions}">Examples of the correct recording of some expressions</i><br>
+                <table class="table table-bordered">
+                    <tbody>
+                    <tr>
+                        <td><img class="img-online" src="/img/example1.gif" alt=""></td>
+                        <td><kbd>sqrt(6-x)</kbd></td>
+                    </tr>
+                    <tr>
+                        <td><img class="img-online" src="/img/example2.gif" alt=""></td>
+                        <td><kbd>(6+2*x)^(1/3)</kbd></td>
+                    </tr>
+                    <tr>
+                        <td><img class="img-online" src="/img/example3.gif" alt=""></td>
+                        <td><kbd>(2/3+x^2)/(x^3+x)</kbd></td>
+                    </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
-
-
     </div>
 </main>
 </body>
