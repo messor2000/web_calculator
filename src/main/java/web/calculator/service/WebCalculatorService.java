@@ -116,4 +116,13 @@ public class WebCalculatorService implements CalculatorService {
 
         return sum * step;
     }
+
+//    private double checkBoarderForNull(double board) {
+//        double checkedBoard = 0;
+//        if (board == null) {
+//            return checkedBoard;
+//        }
+//
+//
+//    }
 }

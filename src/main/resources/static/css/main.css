@@ -87,7 +87,8 @@ input {
 }
 
 .btn {
-    width: calc(100% - 50px);
+    /*width: calc(100% - 50px);*/
+    width: 50%;
     margin: 0 auto;
     padding: 1em;
     color: darkslategray;
@@ -105,11 +106,11 @@ input {
 }
 
 .results {
-    width: calc(100% - 50px);
+    width: 50%;
     margin: 0 auto;
     line-height: 0.6;
-    background-color: #98fb98;
-    border: 1px solid #4cbb17;
+    background-color: #d2d7d2;
+    border: 1px solid #9fa59f;
     border-radius: 10px;
 }
 
@@ -127,7 +128,7 @@ input {
 }
 
 .item {
-    width: 30%;
+    width: 50%;
 }
 
 .form-control {
@@ -155,10 +156,6 @@ input {
     height: 30px;
 }
 
-.col-xs-12 {
-    width: 100%;
-}
-
 .form-control, .form-control-flex {
     padding: 6px 0px;
     font-size: 1em;
@@ -167,4 +164,9 @@ input {
     border-radius: 4px;
     box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
     transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}
+
+.function {
+    width: 50%;
+    margin: 0 auto;
 }

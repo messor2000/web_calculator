@@ -48,6 +48,8 @@ public class MainController {
         redirectAttributes.addFlashAttribute("splineResult", splineResult);
 
         redirectAttributes.addFlashAttribute("function", function);
+        redirectAttributes.addFlashAttribute("numFrom", numFrom);
+        redirectAttributes.addFlashAttribute("numTo", numTo);
 
         return "redirect:/";
     }
