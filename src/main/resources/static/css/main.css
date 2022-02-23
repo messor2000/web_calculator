@@ -149,10 +149,12 @@ input {
 
 .board-input-size {
     font-size: 1em;
+    width: 40px;
+
 }
 
 .function-input-size {
-    width: 200px;
+    width: 100px;
     height: 30px;
 }
 
