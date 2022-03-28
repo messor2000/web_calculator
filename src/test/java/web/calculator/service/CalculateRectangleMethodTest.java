@@ -26,7 +26,7 @@ public class CalculateRectangleMethodTest {
         double methodResult = calculatorService.integrateRectangleMethod(0, 2, "x^2");
 
         String result = String.format("%.2f", methodResult);
-        String expectedResult = "2,66";
+        String expectedResult = "2.66";
 
         assertEquals(expectedResult, result);
     }
@@ -37,7 +37,7 @@ public class CalculateRectangleMethodTest {
         double methodResult = calculatorService.integrateRectangleMethod(0, 2, "sin(x+2)");
 
         String result = String.format("%.2f", methodResult);
-        String expectedResult = "0,24";
+        String expectedResult = "0.24";
 
         assertEquals(expectedResult, result);
     }
