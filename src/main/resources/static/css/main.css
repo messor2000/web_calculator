@@ -30,8 +30,6 @@ header {
     max-width: 90%;
     margin: 20px auto;
     color: rgba(45, 48, 46, 0.8);
-    /*background-color: 69D2E7;*/
-    /*border: 2px solid F38630;*/
     border-radius: 1em;
 }
 
@@ -184,4 +182,12 @@ input {
     padding: 4px;
     display: table-cell;
     vertical-align: top;
+}
+
+.lang {
+    display: flex;
+}
+
+.footer-name {
+    margin: 3% 0 2% 0;
 }

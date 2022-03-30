@@ -4,6 +4,8 @@ import org.mariuszgromada.math.mxparser.Expression;
 import org.mariuszgromada.math.mxparser.Function;
 import org.springframework.stereotype.Service;
 
+import java.util.regex.Pattern;
+
 @Service
 public class WebCalculatorService implements CalculatorService {
 
@@ -117,12 +119,12 @@ public class WebCalculatorService implements CalculatorService {
         return sum * step;
     }
 
-//    private double checkBoarderForNull(double board) {
-//        double checkedBoard = 0;
-//        if (board == null) {
-//            return checkedBoard;
-//        }
-//
-//
-//    }
+    private final Pattern pattern = Pattern.compile("-?\\d+(\\.\\d+)?");
+
+    public boolean isNumeric(String strNum) {
+        if (strNum == null) {
+            return false;
+        }
+        return pattern.matcher(strNum).matches();
+    }
 }

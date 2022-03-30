@@ -9,6 +9,7 @@
 </head>
 
 <header th:text="#{title}"> Integral Calculator</header>
+
 <body>
 <main>
     <div class="container main-box">
@@ -74,16 +75,16 @@
             </div>
 
             <div class="item">
-                <div>
+                <div class="lang">
                     <p th:text="#{language}">Change language:</p>
-                    <div class="localization" th:if="${#locale.toString() == 'uk_UK'}">
+                    <div th:if="${#locale.toString() == 'uk_UK'}">
                         <a th:href="@{${#httpServletRequest.requestURI}(lang='en_US')}">
-                            <i>EN</i>
+                            <i>English language</i>
                         </a>
                     </div>
-                    <div class="localization" th:if="${#locale.toString() == 'en_US'}">
+                    <div th:if="${#locale.toString() == 'en_US'}">
                         <a th:href="@{${#httpServletRequest.requestURI}(lang='uk_UK')}">
-                            <i>UA</i>
+                            <i>Українська мова</i>
                         </a>
                     </div>
                 </div>
@@ -121,94 +122,12 @@
                 <h4 id="dlfunc" th:text="#{rules}">Rules for entering expressions and functions</h4>
                 <div class="kr-table">
                     <div class="kr-row">
-                        <!--                        <div class="kr-cell"><span>Выражения могут состоять из функций (обозначения даны в алфавитном порядке):</span>-->
-                        <!--                            <dl>-->
-                        <!--                                <dt><b>absolute(x)</b></dt>-->
-                        <!--                                <dd>-->
-                        <!--                                    Абсолютное значение <b>x</b><br>-->
-                        <!--                                    (модуль <b>x</b> или <b>|x|</b>)-->
-                        <!--                                </dd>-->
-                        <!--                                <dt><b>arccos(x)</b></dt>-->
-                        <!--                                <dd>-->
-                        <!--                                    Функция - арккосинус от <b>x</b></dd>-->
-                        <!--                                <dt><b>arccosh(x)</b></dt>-->
-                        <!--                                <dd>-->
-                        <!--                                    Арккосинус гиперболический от <b>x</b></dd>-->
-                        <!--                                <dt><b>arcsin(x)</b></dt>-->
-                        <!--                                <dd>-->
-                        <!--                                    Арксинус от <b>x</b></dd>-->
-                        <!--                                <dt><b>arcsinh(x)</b></dt>-->
-                        <!--                                <dd>-->
-                        <!--                                    Арксинус гиперболический от <b>x</b></dd>-->
-                        <!--                                <dt><b>arctg(x)</b></dt>-->
-                        <!--                                <dd>-->
-                        <!--                                    Функция - арктангенс от <b>x</b></dd>-->
-                        <!--                                <dt><b>arctgh(x)</b></dt>-->
-                        <!--                                <dd>-->
-                        <!--                                    Арктангенс гиперболический от <b>x</b></dd>-->
-                        <!--                                <dt><b>exp(x)</b></dt>-->
-                        <!--                                <dd>-->
-                        <!--                                    Функция - экспонента от <b>x</b> (что и <b>e</b>^<b>x</b>)-->
-                        <!--                                </dd>-->
-                        <!--                                <dt><b>log(x)</b> or <b>ln(x)</b></dt>-->
-                        <!--                                <dd>-->
-                        <!--                                    Натуральный логарифм от <b>x</b><br>-->
-                        <!--                                    (Чтобы получить <b>log7(x)</b>, надо ввести log(x)/log(7) (или, например для <b>log10(x)</b>=log(x)/log(10))-->
-                        <!--                                </dd>-->
-                        <!--                                <dt><b>sin(x)</b></dt>-->
-                        <!--                                <dd>-->
-                        <!--                                    Функция - Синус от <b>x</b></dd>-->
-                        <!--                                <dt><b>cos(x)</b></dt>-->
-                        <!--                                <dd>-->
-                        <!--                                    Функция - Косинус от <b>x</b></dd>-->
-                        <!--                                <dt><b>sinh(x)</b></dt>-->
-                        <!--                                <dd>-->
-                        <!--                                    Функция - Синус гиперболический от <b>x</b></dd>-->
-                        <!--                                <dt><b>cosh(x)</b></dt>-->
-                        <!--                                <dd>-->
-                        <!--                                    Функция - Косинус гиперболический от <b>x</b></dd>-->
-                        <!--                                <dt><b>sqrt(x)</b></dt>-->
-                        <!--                                <dd>-->
-                        <!--                                    Функция - квадратный корень из <b>x</b></dd>-->
-                        <!--                                <dt><b>sqr(x)</b> или <b>x^2</b></dt>-->
-                        <!--                                <dd>-->
-                        <!--                                    Функция - Квадрат <b>x</b></dd>-->
-                        <!--                                <dt><b>ctg(x)</b></dt>-->
-                        <!--                                <dd>-->
-                        <!--                                    Функция - Котангенс от <b>x</b></dd>-->
-                        <!--                                <dt><b>arcctg(x)</b></dt>-->
-                        <!--                                <dd>-->
-                        <!--                                    Функция - Арккотангенс от <b>x</b></dd>-->
-                        <!--                                <dt><b>arcctgh(x)</b></dt>-->
-                        <!--                                <dd>-->
-                        <!--                                    Функция - Гиперболический арккотангенс от <b>x</b></dd>-->
-                        <!--                                <dt><b>tg(x)</b></dt>-->
-                        <!--                                <dd>-->
-                        <!--                                    Функция - Тангенс от <b>x</b></dd>-->
-                        <!--                                <dt><b>tgh(x)</b></dt>-->
-                        <!--                                <dd>-->
-                        <!--                                    Функция - Тангенс гиперболический от <b>x</b></dd>-->
-                        <!--                                <dt><b>cbrt(x)</b></dt>-->
-                        <!--                                <dd>-->
-                        <!--                                    Функция - кубический корень из <b>x</b></dd>-->
-                        <!--                                <dt><b>gamma(x)</b></dt>-->
-                        <!--                                <dd>-->
-                        <!--                                    Гамма-функция-->
-                        <!--                                </dd>-->
-                        <!--                                <dt><b>LambertW(x)</b></dt>-->
-                        <!--                                <dd>-->
-                        <!--                                    Функция Ламберта-->
-                        <!--                                </dd>-->
-                        <!--                                <dt><b>x!</b> или <b>factorial(x)</b></dt>-->
-                        <!--                                <dd>-->
-                        <!--                                    Факториал от <b>x</b></dd>-->
-                        <!--                            </dl>-->
-                        <!--                        </div>-->
                         <div class="kr-cell"><span></span>
                             <dl>
                                 <dt><b th:text="#{rules.numbers}">Real numbers</b></dt>
                                 <dd th:text="#{rule.one}">
-                                    enter in the form 7.5, not 7,5</dd>
+                                    enter in the form 7.5, not 7,5
+                                </dd>
                                 <dt><b>2*x</b></dt>
                                 <dd th:text="#{rule.two}">
                                     - multiplication
@@ -234,52 +153,6 @@
                                     - fraction
                                 </dd>
                             </dl>
-                            <!--                            <br><span>Другие функции:</span>-->
-                            <!--                            <dl>-->
-                            <!--                                <dt><b>asec(x)</b></dt>-->
-                            <!--                                <dd>-->
-                            <!--                                    Функция - арксеканс от <b>x</b></dd>-->
-                            <!--                                <dt><b>acsc(x)</b></dt>-->
-                            <!--                                <dd>-->
-                            <!--                                    Функция - арккосеканс от <b>x</b></dd>-->
-                            <!--                                <dt><b>sec(x)</b></dt>-->
-                            <!--                                <dd>-->
-                            <!--                                    Функция - секанс от <b>x</b></dd>-->
-                            <!--                                <dt><b>csc(x)</b></dt>-->
-                            <!--                                <dd>-->
-                            <!--                                    Функция - косеканс от <b>x</b></dd>-->
-                            <!--                                <dt><b>floor(x)</b></dt>-->
-                            <!--                                <dd>-->
-                            <!--                                    Функция - округление <b>x</b> в меньшую сторону (пример floor(4.5)==4.0)-->
-                            <!--                                </dd>-->
-                            <!--                                <dt><b>ceiling(x)</b></dt>-->
-                            <!--                                <dd>-->
-                            <!--                                    Функция - округление <b>x</b> в большую сторону (пример ceiling(4.5)==5.0)-->
-                            <!--                                </dd>-->
-                            <!--                                <dt><b>sign(x)</b></dt>-->
-                            <!--                                <dd>-->
-                            <!--                                    Функция - Знак <b>x</b></dd>-->
-                            <!--                                <dt><b>erf(x)</b></dt>-->
-                            <!--                                <dd>-->
-                            <!--                                    Функция ошибок (или интеграл вероятности)-->
-                            <!--                                </dd>-->
-                            <!--                                <dt><b>laplace(x)</b></dt>-->
-                            <!--                                <dd>-->
-                            <!--                                    Функция Лапласа-->
-                            <!--                                </dd>-->
-                            <!--                                <dt><b>asech(x)</b></dt>-->
-                            <!--                                <dd>-->
-                            <!--                                    Функция - гиперболический арксеканс от <b>x</b></dd>-->
-                            <!--                                <dt><b>csch(x)</b></dt>-->
-                            <!--                                <dd>-->
-                            <!--                                    Функция - гиперболический косеканс от <b>x</b></dd>-->
-                            <!--                                <dt><b>sech(x)</b></dt>-->
-                            <!--                                <dd>-->
-                            <!--                                    Функция - гиперболический секанс от <b>x</b></dd>-->
-                            <!--                                <dt><b>acsch(x)</b></dt>-->
-                            <!--                                <dd>-->
-                            <!--                                    Функция - гиперболический арккосеканс от <b>x</b></dd>-->
-                            <!--                            </dl>-->
                             <br><span th:text="#{permanent}">Permanent:</span>
                             <dl>
                                 <dt><b>pi</b></dt>
@@ -299,3 +172,4 @@
     </div>
 </main>
 </body>
+
