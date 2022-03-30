@@ -17,39 +17,46 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @AutoConfigureMockMvc
 public class CalculateWithSimpsonRuleTest {
 
-//    @Autowired
-//    private WebCalculatorService calculatorService;
-//
-//    @Test
-//    @DisplayName("Test that simpson rule method should get correct result")
-//    public void shouldReturnCorrectAnswerWithCorrectFunction() {
-//        double methodResult = calculatorService.integrateSimpsonMethod(0, 2, "x^2");
-//
-//        String result = String.format("%.2f", methodResult);
-//        String expectedResult = "2.66";
-//
-//        assertEquals(expectedResult, result);
-//    }
-//
-//    @Test
-//    @DisplayName("Test that simpson rule method should get correct result")
-//    public void shouldReturnCorrectAnswerWithTrigonometry() {
-//        double methodResult = calculatorService.integrateSimpsonMethod(0, 2, "sin(x+2)");
-//
-//        String result = String.format("%.2f", methodResult);
-//        String expectedResult = "0.24";
-//
-//        assertEquals(expectedResult, result);
-//    }
-//
-//    @Test
-//    @DisplayName("Test that simpson rule method should get correct result")
-//    public void shouldReturnNaNWithIncorrectInput() {
-//        double methodResult = calculatorService.integrateSimpsonMethod(0, 2, "x2");
-//
-//        String result = String.format("%.2f", methodResult);
-//        String expectedResult = "NaN";
-//
-//        assertEquals(expectedResult, result);
-//    }
+    @Autowired
+    private WebCalculatorService calculatorService;
+
+    @Test
+    @DisplayName("Test that simpson rule method should get correct result")
+    public void shouldReturnCorrectAnswerWithCorrectFunction() {
+        String methodResult = calculatorService.integrateSimpsonMethod("0", "2", "x^2");
+
+        String expectedResult = "2.66";
+
+        assertEquals(expectedResult, methodResult.substring(0, 4));
+    }
+
+    @Test
+    @DisplayName("Test that simpson rule method should get correct result")
+    public void shouldReturnCorrectAnswerWithTrigonometry() {
+        String methodResult = calculatorService.integrateSimpsonMethod("0", "2", "sin(x+2)");
+
+        String expectedResult = "0.23";
+
+        assertEquals(expectedResult, methodResult.substring(0, 4));
+    }
+
+    @Test
+    @DisplayName("Test that simpson rule method should get Nan when function is invalid")
+    public void shouldReturnNaNWithIncorrectInput() {
+        String methodResult = calculatorService.integrateSimpsonMethod("0", "2", "x2");
+
+        String expectedResult = "NaN";
+
+        assertEquals(expectedResult, methodResult);
+    }
+
+    @Test
+    @DisplayName("Test that rectangle method should get error when boarder incorrect")
+    public void shouldReturnErrorWithIncorrectBoarderInput() {
+        String methodResult = calculatorService.integrateSimpsonMethod("fgj", "fdg", "x2");
+
+        String expectedResult = "Error within limits";
+
+        assertEquals(expectedResult, methodResult);
+    }
 }

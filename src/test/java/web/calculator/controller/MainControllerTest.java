@@ -15,7 +15,6 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import web.calculator.service.WebCalculatorService;
 
-import static org.junit.Assert.assertEquals;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
@@ -65,10 +64,8 @@ public class MainControllerTest {
                 .andExpect(MockMvcResultMatchers.flash().attribute("trapezoidalResult", trapezoidalResult))
                 .andExpect(MockMvcResultMatchers.flash().attribute("parabolasResult", parabolasResult))
                 .andExpect(MockMvcResultMatchers.flash().attribute("splineResult", splineResult))
+                .andExpect(MockMvcResultMatchers.flash().attribute("simpsonRuleResult", simpsonRuleResult))
                 .andExpect(redirectedUrl("/"));
-
-        String epsilon = "0.01d";
-        assertEquals(simpsonRuleResult, simpsonRuleResult, epsilon);
     }
 
     @Test
@@ -89,10 +86,8 @@ public class MainControllerTest {
                 .andExpect(MockMvcResultMatchers.flash().attribute("trapezoidalResult", trapezoidalResult))
                 .andExpect(MockMvcResultMatchers.flash().attribute("parabolasResult", parabolasResult))
                 .andExpect(MockMvcResultMatchers.flash().attribute("splineResult", splineResult))
+                .andExpect(MockMvcResultMatchers.flash().attribute("simpsonRuleResult", simpsonRuleResult))
                 .andExpect(redirectedUrl("/"));
-
-        String epsilon = "0.01d";
-        assertEquals(simpsonRuleResult, simpsonRuleResult, epsilon);
     }
 
     @Test
