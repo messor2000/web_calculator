@@ -110,6 +110,10 @@ input {
     border-radius: 10px;
 }
 
+.result-trap {
+    font-size: 1.3em;
+}
+
 .chart-info {
     margin-left: 60px;
 }
