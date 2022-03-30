@@ -111,4 +111,26 @@ public class MainControllerTest {
                 .andExpect(MockMvcResultMatchers.flash().attribute("splineResult", splineResult))
                 .andExpect(redirectedUrl("/"));
     }
+
+    @Test
+    @DisplayName("Test should show NaN when incorrect result")
+    public void showErrorMsgWhenPutIncorrectBoarders() throws Exception {
+        String rectangleResult = calculatorService.integrateRectangleMethod("er" ,"er", "x2");
+        String trapezoidalResult = calculatorService.integrateTrapezoidalMethod("er" ,"er", "x2");
+        String simpsonRuleResult = calculatorService.integrateSimpsonMethod("er" ,"er", "x2");
+        String parabolasResult = calculatorService.integrateParabolasMethod("er" ,"er", "x2");
+        String splineResult = calculatorService.integrateSplineMethod("er" ,"er", "x2");
+
+        this.mockMvc.perform(MockMvcRequestBuilders.post("/integrate")
+                        .param("function", "x2")
+                        .param("numFrom", "er")
+                        .param("numTo", "er"))
+                .andDo(print())
+                .andExpect(MockMvcResultMatchers.flash().attribute("rectangleResult", rectangleResult))
+                .andExpect(MockMvcResultMatchers.flash().attribute("trapezoidalResult", trapezoidalResult))
+                .andExpect(MockMvcResultMatchers.flash().attribute("simpsonRuleResult", simpsonRuleResult))
+                .andExpect(MockMvcResultMatchers.flash().attribute("parabolasResult", parabolasResult))
+                .andExpect(MockMvcResultMatchers.flash().attribute("splineResult", splineResult))
+                .andExpect(redirectedUrl("/"));
+    }
 }
