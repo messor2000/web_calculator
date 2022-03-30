@@ -11,10 +11,10 @@ public class WebCalculatorService implements CalculatorService {
 
     private static final int PRECISION = 1000;
     private static final String FX = "f(x) = ";
+    private static final String ERROR_MSG = "Error within limits";
 
     @Override
     public String integrateRectangleMethod(String a, String b, String function) {
-
         if (isNumeric(a) && isNumeric(b)) {
             double convertedA = Double.parseDouble(a);
             double convertedB = Double.parseDouble(b);
@@ -35,7 +35,6 @@ public class WebCalculatorService implements CalculatorService {
 
     @Override
     public String integrateTrapezoidalMethod(String a, String b, String function) {
-
         if (isNumeric(a) && isNumeric(b)) {
             double convertedA = Double.parseDouble(a);
             double convertedB = Double.parseDouble(b);
@@ -44,8 +43,8 @@ public class WebCalculatorService implements CalculatorService {
             Function f = new Function(FX + function);
 
             for (int i = 0; i < (convertedB - convertedA) / step; i++) {
-                Expression e = new Expression("f(" + (a + i * step) + ")", f);
-                Expression e1 = new Expression("f(" + (a + (i + 1) * step) + ")", f);
+                Expression e = new Expression("f(" + (convertedA + i * step) + ")", f);
+                Expression e1 = new Expression("f(" + (convertedA + (i + 1) * step) + ")", f);
                 area += step * (0.5 * (e.calculate() + e1.calculate()));
             }
             return Double.toString(area);
@@ -56,7 +55,6 @@ public class WebCalculatorService implements CalculatorService {
 
     @Override
     public String integrateSplineMethod(String a, String b, String function) {
-
         if (isNumeric(a) && isNumeric(b)) {
             double convertedA = Double.parseDouble(a);
             double convertedB = Double.parseDouble(b);
@@ -117,7 +115,6 @@ public class WebCalculatorService implements CalculatorService {
     }
 
     private String integrateSimpsonAndParabolasMethod(String a, String b, String function) {
-
         if (isNumeric(a) && isNumeric(b)) {
             double convertedA = Double.parseDouble(a);
             double convertedB = Double.parseDouble(b);
@@ -154,6 +151,4 @@ public class WebCalculatorService implements CalculatorService {
         }
         return pattern.matcher(strNum).matches();
     }
-
-    private static final String ERROR_MSG = "Error within limits";
 }

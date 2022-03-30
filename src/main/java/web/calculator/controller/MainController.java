@@ -31,7 +31,7 @@ public class MainController {
 
         String rectangleResult = calculatorService.integrateRectangleMethod(numFrom, numTo, function);
         String trapezoidalResult = calculatorService.integrateTrapezoidalMethod(numFrom, numTo, function);
-        String simpsonRuleResult = calculatorService.integrateTrapezoidalMethod(numFrom, numTo, function);
+        String simpsonRuleResult = calculatorService.integrateSimpsonMethod(numFrom, numTo, function);
         String parabolasResult = calculatorService.integrateParabolasMethod(numFrom, numTo, function);
         String splineResult = calculatorService.integrateSplineMethod(numFrom, numTo, function);
 
