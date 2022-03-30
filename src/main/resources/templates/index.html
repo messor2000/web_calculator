@@ -5,57 +5,72 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title th:text="#{title}">Integral Calculator</title>
     <link href="/css/main.css" th:href="@{/css/main.css}" rel="stylesheet"/>
+    <link href="/css/function.css" th:href="@{/css/function.css}" rel="stylesheet"/>
 </head>
 
 <header th:text="#{title}"> Integral Calculator</header>
 <body>
 <main>
-    <div class="container">
+    <div class="container main-box">
         <div class="main-wrapper">
             <div class="item">
-                <form action="/integrate" method="post">
-                    <section class="container">
-                        <table class="function">
-                            <tbody>
-                            <tr>
-                                <td style="text-align:center">
-                                    <br><label for="b"></label><input class="board-input-size" type="number" id="b"
-                                                                      th:placeholder="${numFrom}" name="numFrom">
-                                    <br><span style="text-align:center;font-size:3em">∫</span>
-                                    <br><label for="a"></label><input class="board-input-size" type="number" id="a"
-                                                                      th:placeholder="${numTo}" name="numTo">
-                                </td>
-                                <td>
-                                    <div class="input-group"><label for="fx"></label><input type="text" id="fx"
-                                                                                            required=""
-                                                                                            th:placeholder="${function}"
-                                                                                            class="form-control keyboardInput
-                                                                                            function-input-size"
-                                                                                            name="function">
-                                        <span class="input-group-addon">dx</span></div>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                        <button class="btn" type="submit" th:text="#{calculate}">
-                            Calculate
-                        </button>
-
-                        <br>
-                        <div class="results">
-                            <p style="font-size: 1.2em;" th:text="#{spline.result}">Spline result:</p>
-                            <p class="result-trap" th:text="${splineResult}"></p>
-                            <p th:text="#{rectangle.result}">Rectangle result:</p>
-                            <p class="result-rect" th:text="${rectangleResult}"></p>
-                            <p th:text="#{trapezoidal.result}">Trapezoidal result:</p>
-                            <p class="result-trap" th:text="${trapezoidalResult}"></p>
-                            <p th:text="#{simpson.rule.result}">Simpson Rule result:</p>
-                            <p class="result-trap" th:text="${simpsonRuleResult}"></p>
-                            <p th:text="#{parabolas.result}">Parabolas result:</p>
-                            <p class="result-trap" th:text="${parabolasResult}"></p>
-                        </div>
-                    </section>
-                </form>
+                <div class="calc01">
+                    <div class="calculator">
+                        <form action="/integrate" method="post">
+                            <fieldset>
+                                <div class="derivative-box">
+                                    <div class="wrap">
+                                        <div class="row no-gutters">
+                                            <div class="col-sm-12">
+                                                <span style="font-size: 1.4em;" th:text="#{title.function}">Enter the function and integration areas:</span>
+                                            </div>
+                                            <div class="col-sm-6 flex-center">
+                                                <div class="definite-integrals">
+                                                    <div class="definite-integrals-boundary">
+                                                        <label>
+                                                            <input value="1" maxlength="4"
+                                                                   class="form-text float-none boundary-top default"
+                                                                   type="text" name="numFrom" th:value="${numFrom}">
+                                                        </label>
+                                                        <div class="orders-integral-panel">
+                                                        </div>
+                                                        <label>
+                                                            <input value="0" maxlength="4"
+                                                                   class="form-text float-none boundary-bottom default"
+                                                                   type="text" name="numTo" th:value="${numTo}">
+                                                        </label>
+                                                    </div>
+                                                    <label>
+                                                        <input style="vertical-align: middle;"
+                                                               class="form-text float-none input-definite-integrals-expression default"
+                                                               type="text" name="function" th:value="${function}">
+                                                    </label>
+                                                    <div class="render-integral"></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6 flex-center">
+                                                <input type="submit" th:value="#{calculate}" id="btnCalculate"
+                                                       class="form-btn btn-calculate-differentiation btn-integral">
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <p style="font-size: 1.2em;" th:text="#{spline.result}">Spline result:</p>
+                                            <p class="result-trap" th:text="${splineResult}"></p>
+                                            <p th:text="#{rectangle.result}">Rectangle result:</p>
+                                            <p class="result-rect" th:text="${rectangleResult}"></p>
+                                            <p th:text="#{trapezoidal.result}">Trapezoidal result:</p>
+                                            <p class="result-trap" th:text="${trapezoidalResult}"></p>
+                                            <p th:text="#{simpson.rule.result}">Simpson Rule result:</p>
+                                            <p class="result-trap" th:text="${simpsonRuleResult}"></p>
+                                            <p th:text="#{parabolas.result}">Parabolas result:</p>
+                                            <p class="result-trap" th:text="${parabolasResult}"></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
             </div>
 
             <div class="item">
@@ -72,24 +87,213 @@
                         </a>
                     </div>
                 </div>
-                <i th:text="#{note}">Note : the number "pi" (π) is written as 3.14</i><br>
-                <i th:text="#{example.expressions}">Examples of the correct recording of some expressions</i><br>
-                <table class="table table-bordered">
-                    <tbody>
-                    <tr>
-                        <td><img class="img-online" src="/img/example1.gif" alt=""></td>
-                        <td><kbd>sqrt(6-x)</kbd></td>
-                    </tr>
-                    <tr>
-                        <td><img class="img-online" src="/img/example2.gif" alt=""></td>
-                        <td><kbd>(6+2*x)^(1/3)</kbd></td>
-                    </tr>
-                    <tr>
-                        <td><img class="img-online" src="/img/example3.gif" alt=""></td>
-                        <td><kbd>(2/3+x^2)/(x^3+x)</kbd></td>
-                    </tr>
-                    </tbody>
-                </table>
+
+                <h3 id="id_examples" th:text="#{examples}">Examples</h3>
+                <div class="kr-table">
+                    <div class="kr-row">
+                        <div class="kr-cell">
+                            <p th:text="#{examples.one}">With the use of degree (square and cube) and fractions</p>
+                            <pre>(x^2 - 1)/(x^3 + 1)</pre>
+                            <p th:text="#{examples.two}">Square root</p>
+                            <pre>sqrt(x)/(x + 1)</pre>
+                            <p th:text="#{examples.three}">Using sine and cosine</p>
+                            <pre>2*sin(x)*cos(x)</pre>
+                            <p th:text="#{examples.four}">Application of the logarithm</p>
+                            <pre>x*log(x, 10)</pre>
+                            <p th:text="#{examples.five}">Natural logarithm</p>
+                            <pre>ln(x)/x</pre>
+                        </div>
+                        <div class="kr-cell">
+                            <p th:text="#{examples.six}">Exhibitor</p>
+                            <pre>exp(x)*x</pre>
+                            <p th:text="#{examples.seven}">Tangent</p>
+                            <pre>tg(x)*sin(x)</pre>
+                            <p th:text="#{examples.eight}">Cotangent</p>
+                            <pre>ctg(x)*cos(x)</pre>
+                            <p th:text="#{examples.nine}">Irrational fractions</p>
+                            <pre>(sqrt(x) - 1)/sqrt(x^2 - x - 1)</pre>
+                            <p th:text="#{examples.ten}">Hyberbolic tangent and cotangent</p>
+                            <pre>ctgh(x)/tgh(x)</pre>
+                        </div>
+                    </div>
+                </div>
+
+                <h4 id="dlfunc" th:text="#{rules}">Rules for entering expressions and functions</h4>
+                <div class="kr-table">
+                    <div class="kr-row">
+                        <!--                        <div class="kr-cell"><span>Выражения могут состоять из функций (обозначения даны в алфавитном порядке):</span>-->
+                        <!--                            <dl>-->
+                        <!--                                <dt><b>absolute(x)</b></dt>-->
+                        <!--                                <dd>-->
+                        <!--                                    Абсолютное значение <b>x</b><br>-->
+                        <!--                                    (модуль <b>x</b> или <b>|x|</b>)-->
+                        <!--                                </dd>-->
+                        <!--                                <dt><b>arccos(x)</b></dt>-->
+                        <!--                                <dd>-->
+                        <!--                                    Функция - арккосинус от <b>x</b></dd>-->
+                        <!--                                <dt><b>arccosh(x)</b></dt>-->
+                        <!--                                <dd>-->
+                        <!--                                    Арккосинус гиперболический от <b>x</b></dd>-->
+                        <!--                                <dt><b>arcsin(x)</b></dt>-->
+                        <!--                                <dd>-->
+                        <!--                                    Арксинус от <b>x</b></dd>-->
+                        <!--                                <dt><b>arcsinh(x)</b></dt>-->
+                        <!--                                <dd>-->
+                        <!--                                    Арксинус гиперболический от <b>x</b></dd>-->
+                        <!--                                <dt><b>arctg(x)</b></dt>-->
+                        <!--                                <dd>-->
+                        <!--                                    Функция - арктангенс от <b>x</b></dd>-->
+                        <!--                                <dt><b>arctgh(x)</b></dt>-->
+                        <!--                                <dd>-->
+                        <!--                                    Арктангенс гиперболический от <b>x</b></dd>-->
+                        <!--                                <dt><b>exp(x)</b></dt>-->
+                        <!--                                <dd>-->
+                        <!--                                    Функция - экспонента от <b>x</b> (что и <b>e</b>^<b>x</b>)-->
+                        <!--                                </dd>-->
+                        <!--                                <dt><b>log(x)</b> or <b>ln(x)</b></dt>-->
+                        <!--                                <dd>-->
+                        <!--                                    Натуральный логарифм от <b>x</b><br>-->
+                        <!--                                    (Чтобы получить <b>log7(x)</b>, надо ввести log(x)/log(7) (или, например для <b>log10(x)</b>=log(x)/log(10))-->
+                        <!--                                </dd>-->
+                        <!--                                <dt><b>sin(x)</b></dt>-->
+                        <!--                                <dd>-->
+                        <!--                                    Функция - Синус от <b>x</b></dd>-->
+                        <!--                                <dt><b>cos(x)</b></dt>-->
+                        <!--                                <dd>-->
+                        <!--                                    Функция - Косинус от <b>x</b></dd>-->
+                        <!--                                <dt><b>sinh(x)</b></dt>-->
+                        <!--                                <dd>-->
+                        <!--                                    Функция - Синус гиперболический от <b>x</b></dd>-->
+                        <!--                                <dt><b>cosh(x)</b></dt>-->
+                        <!--                                <dd>-->
+                        <!--                                    Функция - Косинус гиперболический от <b>x</b></dd>-->
+                        <!--                                <dt><b>sqrt(x)</b></dt>-->
+                        <!--                                <dd>-->
+                        <!--                                    Функция - квадратный корень из <b>x</b></dd>-->
+                        <!--                                <dt><b>sqr(x)</b> или <b>x^2</b></dt>-->
+                        <!--                                <dd>-->
+                        <!--                                    Функция - Квадрат <b>x</b></dd>-->
+                        <!--                                <dt><b>ctg(x)</b></dt>-->
+                        <!--                                <dd>-->
+                        <!--                                    Функция - Котангенс от <b>x</b></dd>-->
+                        <!--                                <dt><b>arcctg(x)</b></dt>-->
+                        <!--                                <dd>-->
+                        <!--                                    Функция - Арккотангенс от <b>x</b></dd>-->
+                        <!--                                <dt><b>arcctgh(x)</b></dt>-->
+                        <!--                                <dd>-->
+                        <!--                                    Функция - Гиперболический арккотангенс от <b>x</b></dd>-->
+                        <!--                                <dt><b>tg(x)</b></dt>-->
+                        <!--                                <dd>-->
+                        <!--                                    Функция - Тангенс от <b>x</b></dd>-->
+                        <!--                                <dt><b>tgh(x)</b></dt>-->
+                        <!--                                <dd>-->
+                        <!--                                    Функция - Тангенс гиперболический от <b>x</b></dd>-->
+                        <!--                                <dt><b>cbrt(x)</b></dt>-->
+                        <!--                                <dd>-->
+                        <!--                                    Функция - кубический корень из <b>x</b></dd>-->
+                        <!--                                <dt><b>gamma(x)</b></dt>-->
+                        <!--                                <dd>-->
+                        <!--                                    Гамма-функция-->
+                        <!--                                </dd>-->
+                        <!--                                <dt><b>LambertW(x)</b></dt>-->
+                        <!--                                <dd>-->
+                        <!--                                    Функция Ламберта-->
+                        <!--                                </dd>-->
+                        <!--                                <dt><b>x!</b> или <b>factorial(x)</b></dt>-->
+                        <!--                                <dd>-->
+                        <!--                                    Факториал от <b>x</b></dd>-->
+                        <!--                            </dl>-->
+                        <!--                        </div>-->
+                        <div class="kr-cell"><span></span>
+                            <dl>
+                                <dt><b th:text="#{rules.numbers}">Real numbers</b></dt>
+                                <dd th:text="#{rule.one}">
+                                    enter in the form 7.5, not 7,5</dd>
+                                <dt><b>2*x</b></dt>
+                                <dd th:text="#{rule.two}">
+                                    - multiplication
+                                </dd>
+                                <dt><b>3/x</b></dt>
+                                <dd th:text="#{rule.three}">
+                                    - division
+                                </dd>
+                                <dt><b>x^3</b></dt>
+                                <dd th:text="#{rule.four}">
+                                    - exponentiation
+                                </dd>
+                                <dt><b>x + 7</b></dt>
+                                <dd th:text="#{rule.five}">
+                                    - addition
+                                </dd>
+                                <dt><b>x - 6</b></dt>
+                                <dd th:text="#{rule.six}">
+                                    - subtraction
+                                </dd>
+                                <dt><b>15/7</b></dt>
+                                <dd th:text="#{rule.seven}">
+                                    - fraction
+                                </dd>
+                            </dl>
+                            <!--                            <br><span>Другие функции:</span>-->
+                            <!--                            <dl>-->
+                            <!--                                <dt><b>asec(x)</b></dt>-->
+                            <!--                                <dd>-->
+                            <!--                                    Функция - арксеканс от <b>x</b></dd>-->
+                            <!--                                <dt><b>acsc(x)</b></dt>-->
+                            <!--                                <dd>-->
+                            <!--                                    Функция - арккосеканс от <b>x</b></dd>-->
+                            <!--                                <dt><b>sec(x)</b></dt>-->
+                            <!--                                <dd>-->
+                            <!--                                    Функция - секанс от <b>x</b></dd>-->
+                            <!--                                <dt><b>csc(x)</b></dt>-->
+                            <!--                                <dd>-->
+                            <!--                                    Функция - косеканс от <b>x</b></dd>-->
+                            <!--                                <dt><b>floor(x)</b></dt>-->
+                            <!--                                <dd>-->
+                            <!--                                    Функция - округление <b>x</b> в меньшую сторону (пример floor(4.5)==4.0)-->
+                            <!--                                </dd>-->
+                            <!--                                <dt><b>ceiling(x)</b></dt>-->
+                            <!--                                <dd>-->
+                            <!--                                    Функция - округление <b>x</b> в большую сторону (пример ceiling(4.5)==5.0)-->
+                            <!--                                </dd>-->
+                            <!--                                <dt><b>sign(x)</b></dt>-->
+                            <!--                                <dd>-->
+                            <!--                                    Функция - Знак <b>x</b></dd>-->
+                            <!--                                <dt><b>erf(x)</b></dt>-->
+                            <!--                                <dd>-->
+                            <!--                                    Функция ошибок (или интеграл вероятности)-->
+                            <!--                                </dd>-->
+                            <!--                                <dt><b>laplace(x)</b></dt>-->
+                            <!--                                <dd>-->
+                            <!--                                    Функция Лапласа-->
+                            <!--                                </dd>-->
+                            <!--                                <dt><b>asech(x)</b></dt>-->
+                            <!--                                <dd>-->
+                            <!--                                    Функция - гиперболический арксеканс от <b>x</b></dd>-->
+                            <!--                                <dt><b>csch(x)</b></dt>-->
+                            <!--                                <dd>-->
+                            <!--                                    Функция - гиперболический косеканс от <b>x</b></dd>-->
+                            <!--                                <dt><b>sech(x)</b></dt>-->
+                            <!--                                <dd>-->
+                            <!--                                    Функция - гиперболический секанс от <b>x</b></dd>-->
+                            <!--                                <dt><b>acsch(x)</b></dt>-->
+                            <!--                                <dd>-->
+                            <!--                                    Функция - гиперболический арккосеканс от <b>x</b></dd>-->
+                            <!--                            </dl>-->
+                            <br><span th:text="#{permanent}">Permanent:</span>
+                            <dl>
+                                <dt><b>pi</b></dt>
+                                <dd th:text="#{permanent.one}">
+                                    The number "Pi", which is approximately equal to ~3.14159..
+                                </dd>
+                                <dt><b>e</b></dt>
+                                <dd th:text="#{permanent.two}">
+                                    Number e the base of the natural logarithm, approximately equal to ~2.7183..
+                                </dd>
+                            </dl>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
