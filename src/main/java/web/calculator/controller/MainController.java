@@ -26,14 +26,14 @@ public class MainController {
     }
 
     @PostMapping("/integrate")
-    public String calculateIntegral(@RequestParam("function") String function, @RequestParam("numFrom") double numFrom,
-                                    @RequestParam("numTo") double numTo, RedirectAttributes redirectAttributes) {
+    public String calculateIntegral(@RequestParam("function") String function, @RequestParam("numFrom") String numFrom,
+                                    @RequestParam("numTo") String numTo, RedirectAttributes redirectAttributes) {
 
-        double rectangleResult = calculatorService.integrateRectangleMethod(numFrom, numTo, function);
-        double trapezoidalResult = calculatorService.integrateTrapezoidalMethod(numFrom, numTo, function);
-        double simpsonRuleResult = calculatorService.integrateTrapezoidalMethod(numFrom, numTo, function);
-        double parabolasResult = calculatorService.integrateParabolasMethod(numFrom, numTo, function);
-        double splineResult = calculatorService.integrateSplineMethod(numFrom, numTo, function);
+        String rectangleResult = calculatorService.integrateRectangleMethod(numFrom, numTo, function);
+        String trapezoidalResult = calculatorService.integrateTrapezoidalMethod(numFrom, numTo, function);
+        String simpsonRuleResult = calculatorService.integrateTrapezoidalMethod(numFrom, numTo, function);
+        String parabolasResult = calculatorService.integrateParabolasMethod(numFrom, numTo, function);
+        String splineResult = calculatorService.integrateSplineMethod(numFrom, numTo, function);
 
         log.info(String.valueOf(rectangleResult));
         log.info(String.valueOf(trapezoidalResult));

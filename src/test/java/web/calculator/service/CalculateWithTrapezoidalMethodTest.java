@@ -17,39 +17,39 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @AutoConfigureMockMvc
 public class CalculateWithTrapezoidalMethodTest {
 
-    @Autowired
-    private WebCalculatorService calculatorService;
-
-    @Test
-    @DisplayName("Test that trapezoidal method should get correct result")
-    public void shouldReturnCorrectAnswerWithCorrectFunction() {
-        double methodResult = calculatorService.integrateTrapezoidalMethod(0, 2, "x^2");
-
-        String result = String.format("%.2f", methodResult);
-        String expectedResult = "2.67";
-
-        assertEquals(expectedResult, result);
-    }
-
-    @Test
-    @DisplayName("Test that rectangle method should get correct result")
-    public void shouldReturnCorrectAnswerWithTrigonometry() {
-        double methodResult = calculatorService.integrateTrapezoidalMethod(0, 2, "sin(x+2)");
-
-        String result = String.format("%.2f", methodResult);
-        String expectedResult = "0.24";
-
-        assertEquals(expectedResult, result);
-    }
-
-    @Test
-    @DisplayName("Test that rectangle method should get correct result")
-    public void shouldReturnNaNWithIncorrectInput() {
-        double methodResult = calculatorService.integrateTrapezoidalMethod(0, 2, "x2");
-
-        String result = String.format("%.2f", methodResult);
-        String expectedResult = "NaN";
-
-        assertEquals(expectedResult, result);
-    }
+//    @Autowired
+//    private WebCalculatorService calculatorService;
+//
+//    @Test
+//    @DisplayName("Test that trapezoidal method should get correct result")
+//    public void shouldReturnCorrectAnswerWithCorrectFunction() {
+//        double methodResult = calculatorService.integrateTrapezoidalMethod(0, 2, "x^2");
+//
+//        String result = String.format("%.2f", methodResult);
+//        String expectedResult = "2.67";
+//
+//        assertEquals(expectedResult, result);
+//    }
+//
+//    @Test
+//    @DisplayName("Test that rectangle method should get correct result")
+//    public void shouldReturnCorrectAnswerWithTrigonometry() {
+//        double methodResult = calculatorService.integrateTrapezoidalMethod(0, 2, "sin(x+2)");
+//
+//        String result = String.format("%.2f", methodResult);
+//        String expectedResult = "0.24";
+//
+//        assertEquals(expectedResult, result);
+//    }
+//
+//    @Test
+//    @DisplayName("Test that rectangle method should get correct result")
+//    public void shouldReturnNaNWithIncorrectInput() {
+//        double methodResult = calculatorService.integrateTrapezoidalMethod(0, 2, "x2");
+//
+//        String result = String.format("%.2f", methodResult);
+//        String expectedResult = "NaN";
+//
+//        assertEquals(expectedResult, result);
+//    }
 }

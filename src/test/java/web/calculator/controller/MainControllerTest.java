@@ -50,11 +50,11 @@ public class MainControllerTest {
     @Test
     @DisplayName("Test should show correct answer if function is correct")
     public void calculateFunctionWithCorrectInputsTest() throws Exception {
-        double rectangleResult = calculatorService.integrateRectangleMethod(0 ,2, "x^2");
-        double trapezoidalResult = calculatorService.integrateTrapezoidalMethod(0 ,2, "x^2");
-        double simpsonRuleResult = calculatorService.integrateSimpsonMethod(0 ,2, "x^2");
-        double parabolasResult = calculatorService.integrateParabolasMethod(0 ,2, "x^2");
-        double splineResult = calculatorService.integrateSplineMethod(0 ,2, "x^2");
+        String rectangleResult = calculatorService.integrateRectangleMethod("0" ,"2", "x^2");
+        String trapezoidalResult = calculatorService.integrateTrapezoidalMethod("0" ,"2", "x^2");
+        String simpsonRuleResult = calculatorService.integrateSimpsonMethod("0" ,"2", "x^2");
+        String parabolasResult = calculatorService.integrateParabolasMethod("0" ,"2", "x^2");
+        String splineResult = calculatorService.integrateSplineMethod("0" ,"2", "x^2");
 
         this.mockMvc.perform(MockMvcRequestBuilders.post("/integrate")
                 .param("function", "x^2")
@@ -67,18 +67,18 @@ public class MainControllerTest {
                 .andExpect(MockMvcResultMatchers.flash().attribute("splineResult", splineResult))
                 .andExpect(redirectedUrl("/"));
 
-        double epsilon = 0.01d;
+        String epsilon = "0.01d";
         assertEquals(simpsonRuleResult, simpsonRuleResult, epsilon);
     }
 
     @Test
     @DisplayName("Test should show correct answer if trigonometrical function is correct")
     public void calculateTrigonometricalFunctionWithCorrectInputsTest() throws Exception {
-        double rectangleResult = calculatorService.integrateRectangleMethod(0 ,2, "cos(x^2)");
-        double trapezoidalResult = calculatorService.integrateTrapezoidalMethod(0 ,2, "cos(x^2)");
-        double simpsonRuleResult = calculatorService.integrateSimpsonMethod(0 ,2, "cos(x^2)");
-        double parabolasResult = calculatorService.integrateParabolasMethod(0 ,2, "cos(x^2)");
-        double splineResult = calculatorService.integrateSplineMethod(0 ,2, "cos(x^2)");
+        String rectangleResult = calculatorService.integrateRectangleMethod("0" ,"2", "cos(x^2)");
+        String trapezoidalResult = calculatorService.integrateTrapezoidalMethod("0" ,"2", "cos(x^2)");
+        String simpsonRuleResult = calculatorService.integrateSimpsonMethod("0" ,"2", "cos(x^2)");
+        String parabolasResult = calculatorService.integrateParabolasMethod("0" ,"2", "cos(x^2)");
+        String splineResult = calculatorService.integrateSplineMethod("0" ,"2", "cos(x^2)");
 
         this.mockMvc.perform(MockMvcRequestBuilders.post("/integrate")
                 .param("function", "cos(x^2)")
@@ -91,18 +91,18 @@ public class MainControllerTest {
                 .andExpect(MockMvcResultMatchers.flash().attribute("splineResult", splineResult))
                 .andExpect(redirectedUrl("/"));
 
-        double epsilon = 0.01d;
+        String epsilon = "0.01d";
         assertEquals(simpsonRuleResult, simpsonRuleResult, epsilon);
     }
 
     @Test
     @DisplayName("Test should show NaN when incorrect result")
     public void showNaNWhenPutIncorrectFunction() throws Exception {
-        double rectangleResult = calculatorService.integrateRectangleMethod(0 ,2, "x2");
-        double trapezoidalResult = calculatorService.integrateTrapezoidalMethod(0 ,2, "x2");
-        double simpsonRuleResult = calculatorService.integrateSimpsonMethod(0 ,2, "x2");
-        double parabolasResult = calculatorService.integrateParabolasMethod(0 ,2, "x2");
-        double splineResult = calculatorService.integrateSplineMethod(0 ,2, "x2");
+        String rectangleResult = calculatorService.integrateRectangleMethod("0" ,"2", "x2");
+        String trapezoidalResult = calculatorService.integrateTrapezoidalMethod("0" ,"2", "x2");
+        String simpsonRuleResult = calculatorService.integrateSimpsonMethod("0" ,"2", "x2");
+        String parabolasResult = calculatorService.integrateParabolasMethod("0" ,"2", "x2");
+        String splineResult = calculatorService.integrateSplineMethod("0" ,"2", "x2");
 
         this.mockMvc.perform(MockMvcRequestBuilders.post("/integrate")
                 .param("function", "x2")

@@ -1,13 +1,13 @@
 package web.calculator.service;
 
 public interface CalculatorService {
-    double integrateRectangleMethod(double a, double b, String function);
+    String integrateRectangleMethod(String a, String b, String function);
 
-    double integrateTrapezoidalMethod(double a, double b, String function);
+    String integrateTrapezoidalMethod(String a, String b, String function);
 
-    double integrateSimpsonMethod(double a, double b, String function);
+    String integrateSimpsonMethod(String a, String b, String function);
 
-    double integrateParabolasMethod(double a, double b, String function);
+    String integrateParabolasMethod(String a, String b, String function);
 
-    double integrateSplineMethod(double a, double b, String function);
+    String integrateSplineMethod(String a, String b, String function);
 }
