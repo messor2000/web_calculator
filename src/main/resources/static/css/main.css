@@ -195,3 +195,18 @@ input {
 .footer-name {
     margin: 3% 0 2% 0;
 }
+
+@media (max-width: 550px) {
+    .item {
+        width: 100%;
+    }
+
+    .main-wrapper{
+        flex-direction: column;
+    }
+
+    .kr-row {
+        display: flex;
+        flex-direction: column;
+    }
+}
