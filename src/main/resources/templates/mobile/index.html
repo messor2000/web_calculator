@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="">
+<head>
+    <meta http-equiv='Content-Type' content='text/html; charset=UTF-8'/>
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title th:text="#{title}">Integral Calculator</title>
+    <link href="/css/main.css" th:href="@{/css/main.css}" rel="stylesheet"/>
+    <link href="/css/function.css" th:href="@{/css/function.css}" rel="stylesheet"/>
+</head>
+
+<header th:text="#{title}"> Integral Calculator</header>
+
+<body>
+<main>
+    <div class="container main-box">
+        <div class="main-wrapper">
+            <div class="item">
+                <div class="calc01">
+                    <div class="calculator">
+                        <form action="/integrate" method="post">
+                            <fieldset>
+                                <div class="derivative-box">
+                                    <div class="wrap">
+                                        <div class="row no-gutters">
+                                            <div class="col-sm-12">
+                                                <span style="font-size: 1.4em;" th:text="#{title.function}">Enter the function and integration areas:</span>
+                                            </div>
+                                            <div class="col-sm-6 flex-center">
+                                                <div class="definite-integrals">
+                                                    <div class="definite-integrals-boundary">
+                                                        <label>
+                                                            <input value="1" maxlength="4"
+                                                                   class="form-text float-none boundary-top default"
+                                                                   type="text" name="numFrom" th:value="${numFrom}">
+                                                        </label>
+                                                        <div class="orders-integral-panel">
+                                                        </div>
+                                                        <label>
+                                                            <input value="0" maxlength="4"
+                                                                   class="form-text float-none boundary-bottom default"
+                                                                   type="text" name="numTo" th:value="${numTo}">
+                                                        </label>
+                                                    </div>
+                                                    <label>
+                                                        <input style="vertical-align: middle;"
+                                                               class="form-text float-none input-definite-integrals-expression default"
+                                                               type="text" name="function" th:value="${function}">
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6 flex-center">
+                                                <input type="submit" th:value="#{calculate}" id="btnCalculate"
+                                                       class="form-btn btn-calculate-differentiation btn-integral">
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <p style="font-size: 1.6em;" th:text="#{spline.result}">Spline result:</p>
+                                            <p class="result-trap" th:text="${splineResult}"></p>
+                                            <p style="font-size: 1.2em;" th:text="#{rectangle.result}">Rectangle result:</p>
+                                            <p class="result-trap" th:text="${rectangleResult}"></p>
+                                            <p style="font-size: 1.2em;" th:text="#{trapezoidal.result}">Trapezoidal result:</p>
+                                            <p class="result-trap" th:text="${trapezoidalResult}"></p>
+                                            <p style="font-size: 1.2em;" th:text="#{simpson.rule.result}">Simpson Rule result:</p>
+                                            <p class="result-trap" th:text="${simpsonRuleResult}"></p>
+                                            <p style="font-size: 1.2em;" th:text="#{parabolas.result}">Parabolas result:</p>
+                                            <p class="result-trap" th:text="${parabolasResult}"></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="item">
+                <div class="lang">
+                    <p th:text="#{language}">Change language:</p>
+                    <div th:if="${#locale.toString() == 'uk_UK'}">
+                        <a th:href="@{${#httpServletRequest.requestURI}(lang='en_US')}">
+                            <i>English language</i>
+                        </a>
+                    </div>
+                    <div th:if="${#locale.toString() == 'en_US'}">
+                        <a th:href="@{${#httpServletRequest.requestURI}(lang='uk_UK')}">
+                            <i>Українська мова</i>
+                        </a>
+                    </div>
+                </div>
+
+                <h3 id="id_examples" th:text="#{examples}">Examples</h3>
+                <div class="kr-table">
+                    <div class="kr-row">
+                        <div class="kr-cell">
+                            <p th:text="#{examples.one}">With the use of degree and fractions</p>
+                            <pre>(x^2 - 1)/(x^3 + 1)</pre>
+                            <p th:text="#{examples.two}">Square root</p>
+                            <pre>sqrt(x)/(x + 1)</pre>
+                            <p th:text="#{examples.three}">Using sine and cosine</p>
+                            <pre>2*sin(x)*cos(x)</pre>
+                            <p th:text="#{examples.four}">Application of the logarithm</p>
+                            <pre>x*log(x, 10)</pre>
+                            <p th:text="#{examples.five}">Natural logarithm</p>
+                            <pre>ln(x)/x</pre>
+                        </div>
+                        <div class="kr-cell">
+                            <p th:text="#{examples.six}">Exhibitor</p>
+                            <pre>exp(x)*x</pre>
+                            <p th:text="#{examples.seven}">Tangent</p>
+                            <pre>tg(x)*sin(x)</pre>
+                            <p th:text="#{examples.eight}">Cotangent</p>
+                            <pre>ctg(x)*cos(x)</pre>
+                            <p th:text="#{examples.nine}">Irrational fractions</p>
+                            <pre>(sqrt(x) - 1)/sqrt(x^2 - x - 1)</pre>
+                            <p th:text="#{examples.ten}">Hyberbolic tangent and cotangent</p>
+                            <pre>ctgh(x)/tgh(x)</pre>
+                        </div>
+                    </div>
+                </div>
+
+                <h4 id="dlfunc" th:text="#{rules}">Rules for entering expressions and functions</h4>
+                <div class="kr-table">
+                    <div class="kr-row">
+                        <div class="kr-cell"><span></span>
+                            <dl>
+                                <dt><b th:text="#{rules.numbers}">Real numbers</b></dt>
+                                <dd th:text="#{rule.one}">
+                                    enter in the form 7.5, not 7,5
+                                </dd>
+                                <dt><b>2*x</b></dt>
+                                <dd th:text="#{rule.two}">
+                                    - multiplication
+                                </dd>
+                                <dt><b>3/x</b></dt>
+                                <dd th:text="#{rule.three}">
+                                    - division
+                                </dd>
+                                <dt><b>x^3</b></dt>
+                                <dd th:text="#{rule.four}">
+                                    - exponentiation
+                                </dd>
+                                <dt><b>x + 7</b></dt>
+                                <dd th:text="#{rule.five}">
+                                    - addition
+                                </dd>
+                                <dt><b>x - 6</b></dt>
+                                <dd th:text="#{rule.six}">
+                                    - subtraction
+                                </dd>
+                                <dt><b>15/7</b></dt>
+                                <dd th:text="#{rule.seven}">
+                                    - fraction
+                                </dd>
+                            </dl>
+                            <br><span th:text="#{permanent}">Permanent:</span>
+                            <dl>
+                                <dt><b>pi</b></dt>
+                                <dd th:text="#{permanent.one}">
+                                    The number "Pi", which is approximately equal to ~3.14159..
+                                </dd>
+                                <dt><b>e</b></dt>
+                                <dd th:text="#{permanent.two}">
+                                    Number e the base of the natural logarithm, approximately equal to ~2.7183..
+                                </dd>
+                            </dl>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+</body>
+
