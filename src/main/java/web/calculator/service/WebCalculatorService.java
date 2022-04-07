@@ -12,10 +12,14 @@ public class WebCalculatorService implements CalculatorService {
     private static final int PRECISION = 1000;
     private static final String FX = "f(x) = ";
     private static final String ERROR_MSG = "Error within limits";
+    private static final String ERROR_BOARD_MSG = "Top board must be higher";
 
     @Override
     public String integrateRectangleMethod(String a, String b, String function) {
-        if (isNumeric(a) && isNumeric(b)) {
+
+        if (Double.parseDouble(b) > Double.parseDouble(a)) {
+            return ERROR_BOARD_MSG;
+        } else if (isNumeric(a) && isNumeric(b)) {
             double convertedA = Double.parseDouble(a);
             double convertedB = Double.parseDouble(b);
             double step = (convertedB - convertedA) / (PRECISION - 1);
@@ -35,7 +39,10 @@ public class WebCalculatorService implements CalculatorService {
 
     @Override
     public String integrateTrapezoidalMethod(String a, String b, String function) {
-        if (isNumeric(a) && isNumeric(b)) {
+
+        if (Double.parseDouble(b) > Double.parseDouble(a)) {
+            return ERROR_BOARD_MSG;
+        } else if (isNumeric(a) && isNumeric(b)) {
             double convertedA = Double.parseDouble(a);
             double convertedB = Double.parseDouble(b);
             double step = (convertedB - convertedA) / (PRECISION - 1);
@@ -49,13 +56,14 @@ public class WebCalculatorService implements CalculatorService {
             }
             return Double.toString(area);
         }
-
         return ERROR_MSG;
     }
 
     @Override
     public String integrateSplineMethod(String a, String b, String function) {
-        if (isNumeric(a) && isNumeric(b)) {
+        if (Double.parseDouble(b) > Double.parseDouble(a)) {
+            return ERROR_BOARD_MSG;
+        } else if (isNumeric(a) && isNumeric(b)) {
             double convertedA = Double.parseDouble(a);
             double convertedB = Double.parseDouble(b);
             int n = PRECISION - 1;
@@ -100,7 +108,6 @@ public class WebCalculatorService implements CalculatorService {
 
             return Double.toString(result);
         }
-
         return ERROR_MSG;
     }
 
@@ -115,7 +122,9 @@ public class WebCalculatorService implements CalculatorService {
     }
 
     private String integrateSimpsonAndParabolasMethod(String a, String b, String function) {
-        if (isNumeric(a) && isNumeric(b)) {
+        if (Double.parseDouble(b) > Double.parseDouble(a)) {
+            return ERROR_BOARD_MSG;
+        } else if (isNumeric(a) && isNumeric(b)) {
             double convertedA = Double.parseDouble(a);
             double convertedB = Double.parseDouble(b);
             double step = (convertedB - convertedA) / (PRECISION - 1);
@@ -139,7 +148,6 @@ public class WebCalculatorService implements CalculatorService {
 
             return Double.toString(sum * step);
         }
-
         return ERROR_MSG;
     }
 
